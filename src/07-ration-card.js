@@ -54,20 +54,69 @@
  */
 export function getFamilyNames(registry) {
   // Your code here
+//   getFamilyNames(registry)
+//  *      - Object.keys() se saare ration card IDs nikalo
+//  *      - Agar registry object nahi hai ya null hai, return []
+//  *      - Example: getFamilyNames({"RC001":{...},"RC002":{...}}) => ["RC001", "RC002"]
+if(typeof registry != 'object' || !registry || Array.isArray(registry)) return []
+const registryKey=Object.keys(registry)
+if(registryKey.length == 0 ) return []
+return registryKey
+
 }
 
 export function getAllFamilies(registry) {
   // Your code here
+//    getAllFamilies(registry)
+//  *      - Object.values() se saari family objects nikalo
+//  *      - Agar registry object nahi hai ya null hai, return []
+//  *      - Example: getAllFamilies({"RC001":{head:"Ram"}}) => [{head:"Ram"}]
+if(typeof registry != 'object' || !registry || Array.isArray(registry)) return []
+const registryValues=Object.values(registry)
+return registryValues
+
 }
 
 export function getRationCardEntries(registry) {
   // Your code here
+//   getRationCardEntries(registry)
+//  *      - Object.entries() se [id, family] pairs nikalo
+//  *      - Agar registry object nahi hai ya null hai, return []
+//  *      - Example: getRationCardEntries({"RC001":{head:"Ram"}}) => [["RC001",{head:"Ram"}]]
+if(typeof registry != 'object' || !registry || Array.isArray(registry)) return []
+const objectEntityRegistry=Object.entries(registry)
+return objectEntityRegistry
+
 }
 
 export function hasRationCard(registry, cardId) {
   // Your code here
+//   hasRationCard(registry, cardId)
+//  *      - .hasOwnProperty() se check karo ki specific ration card hai ya nahi
+//  *      - Agar registry object nahi hai ya cardId string nahi hai, return false
+//  *      - Example: hasRationCard({"RC001":{head:"Ram"}}, "RC001") => true
+//  *      - Example: hasRationCard({"RC001":{head:"Ram"}}, "RC999") => false
+if(typeof registry != 'object' || !registry || typeof cardId != "string") return false
+return registry.hasOwnProperty(cardId)
 }
 
 export function removeRationCard(registry, cardId) {
   // Your code here
+//   removeRationCard(registry, cardId)
+//  *      - delete operator se ration card remove karo
+//  *      - Pehle hasOwnProperty se check karo ki card hai ya nahi
+//  *      - Return true agar card tha aur delete hua, false otherwise
+//  *      - Agar registry object nahi hai ya cardId string nahi hai, return false
+//  *      - Example: removeRationCard({"RC001":{head:"Ram"}}, "RC001") => true
+if(typeof registry != 'object' || !registry || typeof cardId != "string") return false
+const hasCard=registry.hasOwnProperty(cardId)
+if(hasCard){
+  delete registry[cardId]
+  return true
 }
+return false
+
+
+}
+
+
