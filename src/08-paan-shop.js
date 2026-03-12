@@ -47,16 +47,72 @@
  */
 export function createPaanOrder(basePaan, customizations) {
   // Your code here
+//   createPaanOrder(basePaan, customizations)
+//  *      - Object.assign({}, basePaan, customizations) se NEW order object banao
+//  *      - Original basePaan ko mutate MAT karo!
+//  *      - Agar basePaan object nahi hai ya null hai, return {}
+//  *      - Agar customizations object nahi hai, sirf basePaan ki copy return karo
+//  *      - Example: createPaanOrder({type:"meetha",price:30}, {extra:"gulkand",price:50})
+//  *                 => {type:"meetha", price:50, extra:"gulkand"}
+if(typeof basePaan != 'object' || basePaan == null) return {}
+if(typeof customizations != "object"){
+  return structuredClone(basePaan)
 }
+return Object.assign({},basePaan,customizations)
+}
+
 
 export function freezeMenu(menu) {
   // Your code here
+  if(typeof menu != 'object' || menu == null) return {}
+  return Object.freeze(menu)
 }
 
 export function updatePrices(menu, increase) {
   // Your code here
+//   updatePrices(menu, increase)
+//  *      - Object.entries() se [key, value] pairs lo
+//  *      - Har price mein increase add karo
+//  *      - Object.fromEntries() se wapas object banao
+//  *      - Return: NEW object (original mat badlo!)
+//  *      - Agar menu object nahi hai ya increase number nahi hai, return {}
+//  *      - Example: updatePrices({meetha:30, saada:20}, 10) => {meetha:40, saada:30}
+  if(typeof menu != 'object' || !menu ) return {}
+  if(typeof increase != 'number') return {}
+  const copyOfMenu=structuredClone(menu)
+  const emptyArray=[]
+
+  for(const [key,value] of Object.entries(copyOfMenu)){
+    emptyArray.push([key,value+increase])
+
+  }
+
+  const menuFromEntity=Object.fromEntries(emptyArray);
+  return menuFromEntity
+
+
+
+
 }
 
 export function mergeDailySpecials(regularMenu, specialsMenu) {
   // Your code here
+//   mergeDailySpecials(regularMenu, specialsMenu)
+//  *      - Spread operator {...regularMenu, ...specialsMenu} se merge karo
+//  *      - specialsMenu ki values override karengi agar same key ho
+//  *      - Return: NEW merged object
+//  *      - Agar koi bhi object nahi hai, usse empty {} maan lo
+//  *      - Example: mergeDailySpecials({meetha:30}, {chocolate:60, meetha:40})
+//  *                 => {meetha:40, chocolate:60}
+//  *
+
+if(typeof regularMenu != 'object' || typeof specialsMenu != 'object') return {}
+
+if(!regularMenu || typeof regularMenu != 'object'){
+  regularMenu={}
+}else if(!specialsMenu || typeof specialsMenu != 'object'){
+  specialsMenu={}
+}
+const mergedMenu={...regularMenu,...specialsMenu}
+return mergedMenu
 }
