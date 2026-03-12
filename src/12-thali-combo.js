@@ -54,6 +54,16 @@
  */
 export function createThaliDescription(thali) {
   // Your code here
+//   createThaliDescription(thali)
+//  *      - Template literal, .join(", "), .toUpperCase(), .toFixed(2) use karo
+//  *      - Format: "{NAME} (Veg/Non-Veg) - Items: {items joined} - Rs.{price}"
+//  *      - name ko UPPERCASE karo, price ko 2 decimal places tak
+//  *      - isVeg true hai toh "Veg", false hai toh "Non-Veg"
+//  *      - Agar thali object nahi hai ya required fields missing hain, return ""
+//  *      - Required fields: name (string), items (array), price (number), isVeg (boolean)
+//  *      - Example: createThaliDescription({name:"Rajasthani Thali", items:["dal","churma"], price:250, isVeg:true})
+//  *                 => "RAJASTHANI THALI (Veg) - Items: dal, churma - Rs.250.00"
+
 }
 
 export function getThaliStats(thalis) {
